@@ -298,6 +298,9 @@ NvDsInferStatus Yolo::buildYoloNetwork(
             printLayerInfo(layerIndex, "maxpool", inputVol, outputVol, std::to_string(weightPtr));
         }
 
+        // Comment out the following block to fix building in DeepStream triton docker image
+        // Reference: https://github.com/marcoslucianops/DeepStream-Yolo/issues/108#issuecomment-992623310
+        /*
         else if (m_ConfigBlocks.at(i).at("type") == "reorg") {
             if (m_NetworkType.find("yolov5") != std::string::npos || m_NetworkType.find("yolor") != std::string::npos) {
                 std::string inputVol = dimsToString(previous->getDimensions());
@@ -327,6 +330,7 @@ NvDsInferStatus Yolo::buildYoloNetwork(
                 printLayerInfo(layerIndex, "reorg", inputVol, outputVol, std::to_string(weightPtr));
             }
         }
+        */
 
         else if (m_ConfigBlocks.at(i).at("type") == "yolo") {
             uint modelType = 1;
